@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+
+	<jdbc-connection-pool name="pool_eventos"
+		res-type="javax.sql.DataSource"
+		datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"
+	>
+		<description>Pool de Conexoes pro banco uemgeventos</description>
+		<property name="Url" value="jdbc:mysql://localhost:3306/uemgeventos"></property>
+		<property name="User" value="eventos_user"></property>
+		<property name="Password" value="@eventos123"></property>
+		
+	</jdbc-connection-pool>
+
+	<jdbc-resource pool-name="pool_eventos" jndi-name="jdbc/eventos">
+	</jdbc-resource>
+
+</resources>
