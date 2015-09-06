@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta lang="pt-BR"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	
+    <title><ui:insert name="title"></ui:insert> :: Sistema de Eventos</title>
+	
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/bootstrap-3.3.4/css/bootstrap.min.css"></link>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Customizacao -->
+    <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/sticky-footer.css"></link>
+    
+</h:head>
+
+<h:body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<div class="container">
+    <div class="page-header">
+	    <ui:insert name="header">
+	    </ui:insert>
+    </div>
+
+	<h:messages id="messages"
+			errorClass="alert alert-danger"
+			fatalClass="alert alert-danger"
+			infoClass="alert alert-info"
+			warnClass="alert alert-warning"
+			styleClass="list-unstyled"></h:messages>
+
+
+	<ui:insert name="content">
+	</ui:insert>
+
+
+	
+</div>
+
+<footer class="footer">
+	<div class="container">
+		<ui:insert name="footer">
+		</ui:insert>
+		<p class="text-muted small text-center">Desenvolvido no NUPSI - Núcleo de Prática em Sistemas de Informação
+		- Universidade do Estado de Minas Gerais
+		- Unidade Frutal</p>
+	</div>
+</footer>
+
+<!-- Colocado no fim para que a pagina carregue mais rapido -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="#{request.contextPath}/jquery/jquery-1.11.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="#{request.contextPath}/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+
+</h:body>
+</h:html>

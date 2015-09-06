@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head>
+  <title>Nao sera mostrado</title>
+</head>
+
+<body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<composite:interface shortDescription="Um div form-group com label e input">
+	<composite:attribute name="label" required="false" default="Label"></composite:attribute>
+	<composite:attribute name="required" required="false" default="false"></composite:attribute>
+	<composite:attribute name="value" required="false"></composite:attribute>
+	<composite:attribute name="type" required="false" default="text"></composite:attribute>
+</composite:interface>
+
+<composite:implementation>
+	<div class="form-group">
+		<h:outputLabel for="it">#{cc.attrs.label}<c:if test="#{cc.attrs.required}"><span class="text-danger"> *</span></c:if></h:outputLabel>
+		
+		<h:inputText id="it"
+			value="#{cc.attrs.value}"
+			required="#{cc.attrs.required}"
+			requiredMessage="O campo #{cc.attrs.label} é obrigatório"
+			styleClass="form-control"
+		>
+			<f:passThroughAttribute name="type" value="#{cc.attrs.type}"/>
+			
+			<c:if test="#{cc.attrs.type == 'date'}">
+				<f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+			</c:if>
+			
+		</h:inputText>
+	</div>
+</composite:implementation>
+
+</body>
+
+</html>

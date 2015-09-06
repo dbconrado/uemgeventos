@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:db="http://java.sun.com/jsf/composite/dbcomponentes">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Criar Evento</ui:define>
+	<ui:define name="header">
+		<h1>Criar Evento</h1>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<fieldset>
+			
+				<db:formfield label="Nome" required="true" value="#{criarEventoBean.evento.nome}"/>
+				<db:formfield label="Data Início" required="true" value="#{criarEventoBean.evento.dataInicio}" type="date"/>
+				<db:formfield label="Data Término" required="true" value="#{criarEventoBean.evento.dataTermino}" type="date"/>
+			
+			</fieldset>
+			<h:commandButton value="Criar Evento" styleClass="btn btn-default" action="#{criarEventoBean.salvar}"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
