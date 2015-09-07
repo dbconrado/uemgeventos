@@ -1,11 +1,15 @@
 package br.uemg.nupsi.eventos.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Formula;
 
 @Entity
 public class Atividade {
@@ -41,6 +45,17 @@ public class Atividade {
 	@JoinColumn(name="evento_id")
 	private Evento evento;
 
+	/**
+	 * A data inicial eh um campo derivado (calculado em tempo de execucao)
+	 * e tem como valor a data da sua primeira ocorrencia.
+	 * NOTA 1: A anotacao Formula eh propria do Hibernate.
+	 * O id referenciado na JPQL eh o id da atividade.
+	 * NOTA 2: esse metodo tem performance ruim, mas aceitavel pois
+	 * o banco de dados eh pequeno.
+	 */
+	@Formula("(select min(o.data) from Ocorrencia o where o.atividade_id = id)")
+	private Date dataInicial;
+	
 	/**
 	 * Construtor padrao com visibilidade pacote
 	 * 
@@ -113,6 +128,10 @@ public class Atividade {
 
 	public void setEvento(Evento evento) {
 		this.evento = evento;
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
 	}
 
 	@Override

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:db="http://java.sun.com/jsf/composite/dbcomponentes">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Editar Evento</ui:define>
+	<ui:define name="header">
+	
+	
+		<f:metadata>
+			<f:viewParam name="evento_id" value="#{editarEventoBean.idEvento}"></f:viewParam>
+		</f:metadata>
+	
+		<h1>Editar Evento</h1>
+		
+	</ui:define>
+	<ui:define name="content">
+	
+		<h:form>
+		
+			<fieldset>
+			
+				<db:formfield label="ID" value="#{editarEventoBean.idEvento}" disabled="true"/>
+				<db:formfield label="Nome" required="true" value="#{editarEventoBean.evento.nome}" focus="true"/>
+				<db:formfield label="Data Início" required="true" value="#{editarEventoBean.evento.dataInicio}" type="date"/>
+				<db:formfield label="Data Término" required="true" value="#{editarEventoBean.evento.dataTermino}" type="date"/>
+			
+			</fieldset>
+
+			<h:commandButton value="Salvar" styleClass="btn btn-default" action="#{editarEventoBean.salvar}">
+				<f:param name="evento_id" value="#{editarEventoBean.idEvento}"/>
+			</h:commandButton>
+		
+		</h:form>
+	
+	</ui:define>
+</ui:composition>
+</html>

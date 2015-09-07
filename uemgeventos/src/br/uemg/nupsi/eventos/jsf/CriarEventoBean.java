@@ -1,4 +1,4 @@
-package br.uemg.nupsi.eventos.teste;
+package br.uemg.nupsi.eventos.jsf;
 
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
-import br.uemg.nupsi.eventos.jsf.FacesUtil;
 import br.uemg.nupsi.eventos.modelo.Evento;
 
 @ManagedBean
@@ -32,7 +31,7 @@ public class CriarEventoBean {
 			FacesUtil.addMessage("Evento cadastrado!");
 			FacesUtil.keepMessages();
 			
-			return "?faces-redirect=true";
+			return "/admin/admevento?faces-redirect=true&evento_id=" + evento.getId();
 			
 		} catch (Exception e) {
 			

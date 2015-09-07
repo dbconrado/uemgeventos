@@ -11,13 +11,14 @@
 </head>
 
 <body>
-<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
 
 <composite:interface shortDescription="Um div form-group com label e input">
 	<composite:attribute name="label" required="false" default="Label"></composite:attribute>
 	<composite:attribute name="required" required="false" default="false"></composite:attribute>
 	<composite:attribute name="value" required="false"></composite:attribute>
 	<composite:attribute name="type" required="false" default="text"></composite:attribute>
+	<composite:attribute name="disabled" required="false" default="false"></composite:attribute>
+	<composite:attribute name="focus" required="false" default="false"></composite:attribute>
 </composite:interface>
 
 <composite:implementation>
@@ -29,8 +30,13 @@
 			required="#{cc.attrs.required}"
 			requiredMessage="O campo #{cc.attrs.label} é obrigatório"
 			styleClass="form-control"
+			disabled="#{cc.attrs.disabled}"
 		>
 			<f:passThroughAttribute name="type" value="#{cc.attrs.type}"/>
+			
+			<c:if test="#{cc.attrs.focus}">
+				<f:passThroughAttribute name="autofocus" value="autofocus"/> 
+			</c:if>
 			
 			<c:if test="#{cc.attrs.type == 'date'}">
 				<f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
