@@ -14,8 +14,42 @@
 	<ui:define name="content">
 		<ul>
 			<li><h:link outcome="/admin/criar_evento">Criar Evento</h:link></li>
-			<li>Editar Evento</li>
 		</ul>
+		
+		<h1>Eventos</h1>
+		<div class="table-responsive">
+		
+			<h:dataTable id="dtEventos"
+				styleClass="table table-striped"
+				value="#{eventoBean.eventos}"
+				var="e">
+				
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					#{e.id}
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Evento</f:facet>
+					<h:link outcome="/admin/admevento?evento_id=#{e.id}">
+					#{e.nome}
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Período</f:facet>
+					<h:outputText value="#{e.dataInicio}">
+						<f:convertDateTime type="date" dateStyle="short"/>
+					</h:outputText> a 
+					<h:outputText value="#{e.dataTermino}">
+						<f:convertDateTime type="date" dateStyle="short"/>
+					</h:outputText>					
+				</h:column>
+				
+			</h:dataTable>
+		
+		</div>
+		
 	</ui:define>
 	<ui:define name="footer">
 	</ui:define>
