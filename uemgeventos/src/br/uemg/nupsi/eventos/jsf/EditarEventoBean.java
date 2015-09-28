@@ -1,5 +1,6 @@
 package br.uemg.nupsi.eventos.jsf;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -19,8 +20,14 @@ public class EditarEventoBean {
 	@Resource
 	private UserTransaction ut;
 	
-	private Integer idEvento;
 	private Evento evento;
+	
+	private QueryIdUtil<Evento> eventoUtil;
+	
+	@PostConstruct
+	public void init() {
+		eventoUtil = new QueryIdUtil<>(em, Evento.class);
+	}
 	
 	public String salvar() {
 		
@@ -29,7 +36,7 @@ public class EditarEventoBean {
 			evento = em.merge(evento);
 			ut.commit();
 			
-			return "/admin/admevento?faces-redirect=true&evento_id=" + idEvento;
+			return "/admin/admevento?faces-redirect=true&evento_id=" + eventoUtil.getId();
 			
 		} catch (Exception e) {
 			FacesUtil.logException("Erro ao salvar", e);
@@ -39,24 +46,15 @@ public class EditarEventoBean {
 	}
 	
 	public Integer getIdEvento() {
-		return idEvento;
+		return eventoUtil.getId();
 	}
 
 	public void setIdEvento(Integer idEvento) {
-		this.idEvento = idEvento;
+		eventoUtil.setId(idEvento);
 	}
 
 	public Evento getEvento() {
-		if (evento == null) {
-			if (idEvento == null)
-				throw new IllegalStateException("Evento nao foi informado.");
-			
-			evento = em.find(Evento.class, idEvento);
-			
-			if (evento == null)
-				throw new IllegalArgumentException("Evento não encontrado.");
-		}
-		return evento;
+		return eventoUtil.getEntidadeOrThrow();
 	}
 	
 	public void setEvento(Evento evento) {

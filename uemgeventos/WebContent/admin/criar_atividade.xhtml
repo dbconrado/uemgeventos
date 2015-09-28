@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:db="http://java.sun.com/jsf/composite/dbcomponentes">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Criar Atividade</ui:define>
+	<ui:define name="header">
+	
+		<f:metadata>
+			<f:viewParam name="evento_id" value="#{criarAtividadeBean.eventoUtil.idEvento}"/>
+			<f:viewAction action="#{criarAtividadeBean.carregarEvento}"/>
+		</f:metadata>
+	
+		<h1>Criar Atividade</h1>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<fieldset>
+			
+				<db:formfield label="Nome" required="true" value="#{criarAtividadeBean.atividade.nome}" focus="true"/>
+				<db:formfield label="Responsável" required="true" value="#{criarAtividadeBean.atividade.responsavel}"/>
+				
+				<div class="form-group">
+					<h:outputLabel for="sbcInscricao">Aceita Inscrição?</h:outputLabel>
+					<h:selectBooleanCheckbox id="sbcInscricao" value="#{criarAtividadeBean.atividade.aceitaInscricao}"
+						styleClass="form-control" required="true" requiredMessage="Campo 'aceita inscrição?' é obrigatório"/>
+				</div>
+				
+				<db:formfield label="Vagas" value="#{criarAtividadeBean.atividade.vagas}" type="number"/>				
+				<db:formfield label="Carga Horária" value="#{criarAtividadeBean.atividade.cargaHoraria}" type="number"/>				
+			
+			</fieldset>
+			
+			<h:commandButton value="Criar Atividade" styleClass="btn btn-default" action="#{criarAtividadeBean.salvar}"/>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:db="http://java.sun.com/jsf/composite/dbcomponentes">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Criar Ocorrência</ui:define>
+	<ui:define name="header">
+	
+		<f:metadata>
+			<f:viewParam name="atividade_id" value="#{criarOcorrenciaBean.idAtividade}"/>
+			<f:viewAction action="#{criarOcorrenciaBean.carregarAtividade}"/>
+		</f:metadata>
+	
+		<h1>Criar Ocorrência</h1>
+	</ui:define>
+	
+	<ui:define name="content">
+		<h:form>
+			<fieldset>
+				<db:formfield lavel="Atividade" value="#{criarOcorrenciaBean.atividade.nome}" disabled="true"/>
+				<db:formfield label="Data" required="true" value="#{criarOcorrenciaBean.ocorrencia.data}" focus="true" type="date"></db:formfield>
+				<db:formfield id="hi" label="Horário Início" required="true" value="#{criarOcorrenciaBean.ocorrencia.horarioInicio}" type="time">
+				</db:formfield>
+				<db:formfield id="ht" label="Horário Término" required="true" value="#{criarOcorrenciaBean.ocorrencia.horarioTermino}" type="time">
+				</db:formfield>
+				<db:formfield label="Local" required="true" value="#{criarOcorrenciaBean.ocorrencia.local}"/>
+				
+			</fieldset>
+			
+			<h:commandButton value="Criar Ocorrência" styleClass="btn btn-default" action="#{criarOcorrenciaBean.salvar}"/>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
+</html>

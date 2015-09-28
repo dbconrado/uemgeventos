@@ -48,7 +48,8 @@
 		<!-- opcao para adicionar, alterar e excluir atividade TODO -->
 		
 		<div class="btn-toolbar" role="toolbar">
-			<h:button id="btnAddAtividade" value="Nova Atividade" styleClass="btn btn-default"/>	
+			<h:button id="btnAddAtividade" value="Nova Atividade" styleClass="btn btn-default"
+				outcome="criar_atividade?evento_id=#{admEventoBean.idEvento}"/>	
 		</div>
 		
 		<!-- tabela de atividades. mostrar:id, nome, data. Ordenar por data crescente -->
@@ -70,7 +71,7 @@
 					<f:facet name="header">
 						Nome
 					</f:facet>
-					<h:link>#{a.nome}</h:link> <!-- TODO link para pagina de editar atividade -->
+					<h:link outcome="admatividade?atividade_id=#{a.id}">#{a.nome}</h:link>
 				</h:column>
 			
 				<h:column>

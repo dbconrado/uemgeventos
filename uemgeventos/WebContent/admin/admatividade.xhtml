@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:db="http://java.sun.com/jsf/composite/dbcomponentes"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">#{admAtividadeBean.atividade.nome}</ui:define>
+	<ui:define name="header">
+	
+		<f:metadata>
+			<f:viewParam name="atividade_id" value="#{admAtividadeBean.idAtividade}"/>
+			<f:viewAction action="#{admAtividadeBean.carregarAtividade}"/>
+		</f:metadata>
+	
+		<h1>Atividade #{admAtividadeBean.idAtividade}</h1>
+		
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		<!--  dados sobre a atividade -->
+		<p>#{admAtividadeBean.atividade.nome}</p>
+		<p>Data Inicial:
+			<h:outputText value="#{admAtividadeBena.atividade.dataInicial}">
+				<f:convertDateTime dateStyle="short" type="date"></f:convertDateTime>
+			</h:outputText>
+		</p>
+		<p>Responsável: #{admAtividadeBean.atividade.responsavel}
+		</p>
+		<p>Aceita Inscrição?: #{admAtividadeBean.atividade.aceitaInscricao ? 'Sim': 'Não'}</p>
+		<p>Vagas: #{admAtividadeBean.atividade.vagas}</p>
+		<p>Carga Horária: #{admAtividadeBean.atividade.cargaHoraria}</p>
+		
+		<h:button id="btnEditar" value="Editar" styleClass="btn btn-default disabled"></h:button>
+		
+		<h2>Ocorrências desta atividade</h2>
+		
+		<div class="btn-toolbar" role="toolbar">
+			<h:button id="btnAddOcorrencia" value="Nova Ocorrência" styleClass="btn btn-default"
+				outcome="criar_ocorrencia?atividade_id=#{admAtividadeBean.idAtividade}"/>	
+		</div>
+		
+		<div class="table-responsive">
+			<h:dataTable id="dtOcorrencias" styleClass="table table-striped" var="o" value="#{admAtividadeBean.ocorrencias}">
+				
+				<h:column>
+					<f:facet name="header">
+						ID
+					</f:facet>
+					#{o.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Data
+					</f:facet>
+					<h:outputText value="#{o.data}">
+						<f:convertDateTime type="date" dateStyle="short"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Hora Início
+					</f:facet>
+					<h:outputText value="#{o.horarioInicio}">
+						<f:convertDateTime timeStyle="short" type="time"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Hora Término
+					</f:facet>
+					<h:outputText value="#{o.horarioTermino}">
+						<f:convertDateTime timeStyle="short" type="time"/>
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						Local
+					</f:facet>
+					#{o.local}
+				</h:column>
+				
+			</h:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

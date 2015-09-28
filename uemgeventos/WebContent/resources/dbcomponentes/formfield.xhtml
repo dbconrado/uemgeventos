@@ -19,6 +19,7 @@
 	<composite:attribute name="type" required="false" default="text"></composite:attribute>
 	<composite:attribute name="disabled" required="false" default="false"></composite:attribute>
 	<composite:attribute name="focus" required="false" default="false"></composite:attribute>
+	<composite:editableValueHolder name="it"></composite:editableValueHolder>
 </composite:interface>
 
 <composite:implementation>
@@ -41,7 +42,9 @@
 			<c:if test="#{cc.attrs.type == 'date'}">
 				<f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
 			</c:if>
-			
+			<c:if test="#{cc.attrs.type == 'time'}">
+				<f:convertDateTime pattern="HH:mm"/>
+			</c:if>
 		</h:inputText>
 	</div>
 </composite:implementation>
