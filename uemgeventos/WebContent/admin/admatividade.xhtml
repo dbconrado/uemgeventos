@@ -36,7 +36,11 @@
 		<p>Vagas: #{admAtividadeBean.atividade.vagas}</p>
 		<p>Carga Horária: #{admAtividadeBean.atividade.cargaHoraria}</p>
 		
-		<h:button id="btnEditar" value="Editar" styleClass="btn btn-default disabled"></h:button>
+		<div class="btn-toolbar" role="toolbar">
+			<h:button id="btnEditar" value="Editar" styleClass="btn btn-default disabled"/>
+			<button id="btnExcluir" class="btn btn-default"
+				data-toggle="modal" data-target="#modalConfirm">Excluir</button>
+		</div>
 		
 		<h2>Ocorrências desta atividade</h2>
 		
@@ -87,6 +91,43 @@
 				
 			</h:dataTable>
 		</div>
+
 	</ui:define>
+	
+	<ui:define name="jqueryloaded">
+		<!-- Modal de confirmacao -->
+		<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Tem certeza?</h4>
+					</div>
+					<div class="modal-body">
+						<p>Tem certeza de que deseja excluir esta atividade?</p>
+					</div>
+					<div class="modal-footer">
+						<h:form>
+							<h:commandButton styleClass="btn btn-default" action="#{admAtividadeBean.excluir}" value="Sim"/>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			/*$(function() {
+				$("#btnExcluir").click(function(event){
+					$("#modalConfirm").modal('show');
+				});
+			});*/
+		</script>
+		
+	</ui:define>
+	
 </ui:composition>
 </html>

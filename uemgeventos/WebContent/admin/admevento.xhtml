@@ -11,96 +11,86 @@
 <ui:composition template="/WEB-INF/template.xhtml">
 	<ui:define name="title">#{admEventoBean.evento.nome}</ui:define>
 	<ui:define name="header">
-	
+
 		<f:metadata>
-			<f:viewParam name="evento_id" value="#{admEventoBean.idEvento}"/>
+			<f:viewParam name="evento_id" value="#{admEventoBean.idEvento}" />
 		</f:metadata>
-	
+
 		<h1>Evento #{admEventoBean.idEvento}</h1>
-		
+
 	</ui:define>
 	<ui:define name="content">
-	
-	<c:choose>
-		<c:when  test="#{admEventoBean.evento == null}">
-			<p class="alert alert-warning">Este evento não existe =/.</p>
-		</c:when>
-		
-		<c:otherwise>
-			
-		<!-- Dados sobre o evento -->
-		<p>#{admEventoBean.evento.nome}</p>
-		<p>
-			<h:outputText value="#{admEventoBean.evento.dataInicio}">
-				<f:convertDateTime type="date" dateStyle="short"/>
-			</h:outputText> a 
-			<h:outputText value="#{admEventoBean.evento.dataTermino}">
-				<f:convertDateTime type="date" dateStyle="short"/>
-			</h:outputText>
-		</p>
-				
-		<!--  botao editar -->
-		<h:button id="btnEditar" value="Editar" styleClass="btn btn-default"
-			outcome="/admin/editar_evento" includeViewParams="true"/>
-		
-		<h2>Atividades do Evento</h2>
-		
-		<!-- opcao para adicionar, alterar e excluir atividade TODO -->
-		
-		<div class="btn-toolbar" role="toolbar">
-			<h:button id="btnAddAtividade" value="Nova Atividade" styleClass="btn btn-default"
-				outcome="criar_atividade?evento_id=#{admEventoBean.idEvento}"/>	
-		</div>
-		
-		<!-- tabela de atividades. mostrar:id, nome, data. Ordenar por data crescente -->
-		<div class="table-responsive">
-			<h:dataTable id="dtAtividades"
-				styleClass="table table-striped"
-				value="#{admEventoBean.atividades}"
-				var="a"
-			>
-			
-				<h:column>
-					<f:facet name="header">
-						ID
-					</f:facet>
-					#{a.id}
-				</h:column>
-			
-				<h:column>
-					<f:facet name="header">
-						Nome
-					</f:facet>
-					<h:link outcome="admatividade?atividade_id=#{a.id}">#{a.nome}</h:link>
-				</h:column>
-			
-				<h:column>
-					<f:facet name="header">
-						Data
-					</f:facet>
-					#{a.dataInicial}
-				</h:column>
-			
-				<h:column>
-					<f:facet name="header">
-						Excluir
-					</f:facet>
-					
-					<!-- TODO fazer esse botao funcionar. Tem que ir pra pagina de confirmacao e deletar depois.
-						Fazer via AJAX nao da porque a pagina perde o viewParam. -->
-						
-					<h:commandLink id="btnExcluir" styleClass="btn btn-default">
-						<f:passThroughAttribute name="role" value="button"/>
-						<span class="glyphicon glyphicon-remove-sign"/>
-					</h:commandLink>
-				</h:column>
 
-			</h:dataTable>
-		</div>
+		<c:choose>
+			<c:when test="#{admEventoBean.evento == null}">
+				<p class="alert alert-warning">Este evento não existe =/.</p>
+			</c:when>
 
-		</c:otherwise>
-	</c:choose>
-		
+			<c:otherwise>
+
+				<!-- Dados sobre o evento -->
+				<p>#{admEventoBean.evento.nome}</p>
+				<p>
+					<h:outputText value="#{admEventoBean.evento.dataInicio}">
+						<f:convertDateTime type="date" dateStyle="short" />
+					</h:outputText>
+					a
+					<h:outputText value="#{admEventoBean.evento.dataTermino}">
+						<f:convertDateTime type="date" dateStyle="short" />
+					</h:outputText>
+				</p>
+
+				<!--  botao editar -->
+				<h:button id="btnEditar" value="Editar" styleClass="btn btn-default"
+					outcome="/admin/editar_evento" includeViewParams="true" />
+
+				<h2>Atividades do Evento</h2>
+
+				<div class="btn-toolbar" role="toolbar">
+					<h:button id="btnAddAtividade" value="Nova Atividade"
+						styleClass="btn btn-default"
+						outcome="criar_atividade?evento_id=#{admEventoBean.idEvento}" />
+				</div>
+
+				<!-- tabela de atividades. mostrar:id, nome, data. Ordenar por data crescente -->
+				<div class="table-responsive">
+					<h:form>
+						<h:dataTable id="dtAtividades" styleClass="table table-striped"
+							value="#{admEventoBean.atividades}" var="a">
+
+							<h:column>
+								<f:facet name="header">
+									ID
+								</f:facet>
+								#{a.id}
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									Nome
+								</f:facet>
+								<h:link outcome="admatividade?atividade_id=#{a.id}">#{a.nome}</h:link>
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									Data
+								</f:facet>
+								#{a.dataInicial}
+							</h:column>
+
+						</h:dataTable>
+					</h:form>
+				</div>
+
+			</c:otherwise>
+		</c:choose>
+
+
 	</ui:define>
+
+	<ui:define name="jqueryloaded">
+	</ui:define>
+
 </ui:composition>
 </html>

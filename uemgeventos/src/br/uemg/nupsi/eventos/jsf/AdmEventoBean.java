@@ -2,21 +2,24 @@ package br.uemg.nupsi.eventos.jsf;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 import br.uemg.nupsi.eventos.modelo.Atividade;
 import br.uemg.nupsi.eventos.modelo.Evento;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AdmEventoBean {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+	@Resource
+	private UserTransaction utx;
 	/**
 	 * Vem por viewParam.
 	 */
@@ -53,7 +56,5 @@ public class AdmEventoBean {
 	public void setIdEvento(Integer idEvento) {
 		this.idEvento = idEvento;
 	}
-	
-	
 	
 }
