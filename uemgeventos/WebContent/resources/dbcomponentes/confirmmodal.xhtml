@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head>
+  <title>Nao sera mostrado</title>
+</head>
+
+<body>
+
+<composite:interface shortDescription="dialogo modal de confirmacao feito com bootstrap">
+	<composite:attribute name="title" required="false" default="Confirmação"></composite:attribute>
+	<composite:attribute name="body" required="false" default="Você tem certeza?"></composite:attribute>
+	<composite:attribute name="action" required="false" method-signature="java.lang.String action()"></composite:attribute>
+	<composite:attribute name="oklabel" required="false" default="Sim"></composite:attribute>
+	<composite:attribute name="cancellabel" required="false" default="Não"></composite:attribute>
+</composite:interface>
+
+<composite:implementation>
+	<!-- Modal de confirmacao -->
+	<h:panelGroup id="modal" layout="block" styleClass="modal fade" tabindex="-1">
+		<f:passThroughAttribute name="tabindex" value="-1"/>
+		<f:passThroughAttribute name="role" value="dialog"/>
+		
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">#{cc.attrs.title}</h4>
+				</div>
+				<div class="modal-body">
+					<p>#{cc.attrs.body}</p>
+				</div>
+				<div class="modal-footer">
+					<h:form>
+						<h:commandButton id="okBtn" styleClass="btn btn-default" 
+							action="#{cc.attrs.action}" value="#{cc.attrs.oklabel}"/>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">#{cc.attrs.cancellabel}</button>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</h:panelGroup>
+</composite:implementation>
+
+</body>
+
+</html>

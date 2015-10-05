@@ -39,7 +39,8 @@
 		<div class="btn-toolbar" role="toolbar">
 			<h:button id="btnEditar" value="Editar" styleClass="btn btn-default disabled"/>
 			<button id="btnExcluir" class="btn btn-default"
-				data-toggle="modal" data-target="#modalConfirm">Excluir</button>
+				data-toggle="modal" data-target="#mymodal\:modal">Excluir</button>
+			<!-- Descoberta importante: para usar dois pontos em ids com o JQuery, é preciso colocar uma barra (\) antes, para dar o escape. Se for em codigo javascript, tem que colocar duas barras (\\) -->
 		</div>
 		
 		<h2>Ocorrências desta atividade</h2>
@@ -95,8 +96,12 @@
 	</ui:define>
 	
 	<ui:define name="jqueryloaded">
+	
+		<db:confirmmodal id="mymodal" body="Tem certeza de que deseja excluir essa atividade?"
+			action="#{admAtividadeBean.excluir}"/>
+	
 		<!-- Modal de confirmacao -->
-		<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog">
+		<!-- div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -111,21 +116,13 @@
 					</div>
 					<div class="modal-footer">
 						<h:form>
-							<h:commandButton styleClass="btn btn-default" action="#{admAtividadeBean.excluir}" value="Sim"/>
+							<h:commandButton styleClass="btn btn-default" action="admAtividadeBean.excluir" value="Sim"/>
 							<button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
 						</h:form>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<script>
-			/*$(function() {
-				$("#btnExcluir").click(function(event){
-					$("#modalConfirm").modal('show');
-				});
-			});*/
-		</script>
+		</div -->
 		
 	</ui:define>
 	
