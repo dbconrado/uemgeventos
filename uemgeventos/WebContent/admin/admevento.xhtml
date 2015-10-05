@@ -76,7 +76,10 @@
 								<f:facet name="header">
 									Data
 								</f:facet>
-								#{a.dataInicial}
+								<h:outputText value="#{a.dataInicial}">
+									<f:convertDateTime dateStyle="short" type="date"/>
+								</h:outputText>
+								
 							</h:column>
 
 						</h:dataTable>
