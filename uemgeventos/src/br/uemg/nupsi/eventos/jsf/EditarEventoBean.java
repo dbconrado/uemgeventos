@@ -12,7 +12,7 @@ import br.uemg.nupsi.eventos.modelo.Evento;
 
 @ManagedBean
 @ViewScoped
-public class EditarEventoBean {
+public class EditarEventoBean{
 
 	@PersistenceContext
 	private EntityManager em;
@@ -27,6 +27,10 @@ public class EditarEventoBean {
 	@PostConstruct
 	public void init() {
 		eventoUtil = new QueryIdUtil<>(em, Evento.class);
+	}
+	
+	public void carregarEvento() {
+		evento = eventoUtil.getEntidadeOrThrow();
 	}
 	
 	public String salvar() {
@@ -54,7 +58,7 @@ public class EditarEventoBean {
 	}
 
 	public Evento getEvento() {
-		return eventoUtil.getEntidadeOrThrow();
+		return evento;
 	}
 	
 	public void setEvento(Evento evento) {

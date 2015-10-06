@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Formula;
 
 @Entity
+@Table(name="atividade")
 public class Atividade {
 
 	@Id
@@ -53,7 +55,7 @@ public class Atividade {
 	 * NOTA 2: esse metodo tem performance ruim, mas aceitavel pois
 	 * o banco de dados eh pequeno.
 	 */
-	@Formula("(select min(o.data) from Ocorrencia o where o.atividade_id = id)")
+	@Formula("(select min(o.data) from ocorrencia o where o.atividade_id = id)")
 	private Date dataInicial;
 	
 	/**

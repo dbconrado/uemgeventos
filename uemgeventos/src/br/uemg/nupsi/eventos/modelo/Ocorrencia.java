@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,12 +17,13 @@ import javax.persistence.TemporalType;
  * Normalmente, a atividade possui apenas uma ocorrencia.
  * Atividades que possuem mais de uma ocorrencia sao
  * minicursos que duram mais de um dia, ou que ocorrem
- * na manhã e a tarde, por exemplo.
+ * na manhï¿½ e a tarde, por exemplo.
  * 
  * @author DB
  *
  */
 @Entity
+@Table(name="ocorrencia")
 public class Ocorrencia {
 
 	@Id

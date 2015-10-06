@@ -40,7 +40,8 @@
 			</c:if>
 			
 			<c:if test="#{cc.attrs.type == 'date'}">
-				<f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
+				<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+				<f:passThroughAttribute name="data-format" value="dd/MM/yyyy"/>
 			</c:if>
 			<c:if test="#{cc.attrs.type == 'time'}">
 				<f:convertDateTime pattern="HH:mm"/>
