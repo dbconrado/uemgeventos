@@ -19,6 +19,7 @@
 	<composite:attribute name="type" required="false" default="text"></composite:attribute>
 	<composite:attribute name="disabled" required="false" default="false"></composite:attribute>
 	<composite:attribute name="focus" required="false" default="false"></composite:attribute>
+	<composite:attribute name="styleClass" required="false"></composite:attribute>
 	<composite:editableValueHolder name="it"></composite:editableValueHolder>
 </composite:interface>
 
@@ -30,7 +31,7 @@
 			value="#{cc.attrs.value}"
 			required="#{cc.attrs.required}"
 			requiredMessage="O campo #{cc.attrs.label} é obrigatório"
-			styleClass="form-control"
+			styleClass="form-control #{cc.attrs.styleClass}"
 			disabled="#{cc.attrs.disabled}"
 		>
 			<f:passThroughAttribute name="type" value="#{cc.attrs.type}"/>
@@ -40,8 +41,8 @@
 			</c:if>
 			
 			<c:if test="#{cc.attrs.type == 'date'}">
-				<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-				<f:passThroughAttribute name="data-format" value="dd/MM/yyyy"/>
+				<f:convertDateTime pattern="yyyy-MM-dd"/>
+				<!-- f:passThroughAttribute name="data-format" value="dd-MM-yyyy"/-->
 			</c:if>
 			<c:if test="#{cc.attrs.type == 'time'}">
 				<f:convertDateTime pattern="HH:mm"/>
