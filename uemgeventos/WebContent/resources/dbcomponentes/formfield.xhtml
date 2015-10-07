@@ -42,10 +42,14 @@
 			
 			<c:if test="#{cc.attrs.type == 'date'}">
 				<f:convertDateTime pattern="yyyy-MM-dd"/>
-				<!-- f:passThroughAttribute name="data-format" value="dd-MM-yyyy"/-->
 			</c:if>
+			
 			<c:if test="#{cc.attrs.type == 'time'}">
 				<f:convertDateTime pattern="HH:mm"/>
+			</c:if>
+			
+			<c:if test="#{cc.attrs.styleClass == 'datepicker'}">
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
 			</c:if>
 		</h:inputText>
 	</div>
