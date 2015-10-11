@@ -71,11 +71,11 @@ public class CriarAtividadeBean {
 		}
 	}
 
-	public QueryIdUtil getEventoUtil() {
+	public QueryIdUtil<Evento> getEventoUtil() {
 		return eventoUtil;
 	}
 
-	public void setEventoUtil(QueryIdUtil eventoUtil) {
+	public void setEventoUtil(QueryIdUtil<Evento> eventoUtil) {
 		this.eventoUtil = eventoUtil;
 	}
 
