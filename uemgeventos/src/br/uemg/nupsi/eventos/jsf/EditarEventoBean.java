@@ -40,6 +40,9 @@ public class EditarEventoBean{
 			evento = em.merge(evento);
 			ut.commit();
 			
+			FacesUtil.addMessage("Evento alteado!");
+			FacesUtil.keepMessages();
+			
 			return "/admin/admevento?faces-redirect=true&evento_id=" + eventoUtil.getId();
 			
 		} catch (Exception e) {
