@@ -37,7 +37,7 @@
 		<p>Carga Horária: #{admAtividadeBean.atividade.cargaHoraria}</p>
 		
 		<div class="btn-toolbar" role="toolbar">
-			<h:button id="btnEditar" value="Editar" styleClass="btn btn-default disabled"/>
+			<h:button id="btnEditar" value="Editar" styleClass="btn btn-default" outcome="editar_atividade" includeViewParams="true"/>
 			<button id="btnExcluir" class="btn btn-default"
 				data-toggle="modal" data-target="#mymodal\:modal">Excluir</button>
 			<!-- Descoberta importante: para usar dois pontos em ids com o JQuery, é preciso colocar uma barra (\) antes, para dar o escape. Se for em codigo javascript, tem que colocar duas barras (\\) -->
