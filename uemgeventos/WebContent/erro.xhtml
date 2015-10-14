@@ -9,9 +9,15 @@
 <ui:composition template="/WEB-INF/template.xhtml">
 	<ui:define name="title">Erro #{errorHandler.statusCode}: #{errorHandler.message}</ui:define>
 	<ui:define name="header">
-		<h1>"ai, desculpa! :(", diz o servidor</h1>
+		<h1>#{errorHandler.randomMessage}</h1>
 	</ui:define>
 	<ui:define name="content">
+		<p>O servidor está com dificuldades para atendê-lo. "E agora, o que fazer?". Bem, você pode:</p>
+		<ol>
+			<li>Tentar novamente mais tarde. O problema pode ser temporário :)</li>
+			<li>Se o problema persistir, envie-nos um e-mail com a mensagem abaixo. Tentaremos atendê-lo o mais
+			breve possível ^^</li>
+		</ol>
 		<p class="alert alert-danger">Erro #{errorHandler.statusCode}: #{errorHandler.message}</p>
 	</ui:define>
 </ui:composition>
