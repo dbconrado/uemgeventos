@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+	<ui:define name="title">Inscrição</ui:define>
+	<ui:define name="header">
+		<h1>Inscrição de Eventos</h1>
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p>Escolha o evento:</p>
+			<h:selectOneMenu value="#{inscricaoEventoBean.evento}" >
+				<f:selectItem itemLabel=" - Selecione um evento"></f:selectItem>
+				<f:selectItems value="#{inscricaoEventoBean.eventos}" var="evento"
+					itemLabel="#{evento.nome}" itemValue="#{evento}"></f:selectItems>
+				<f:ajax event="change" render="atividades"></f:ajax>
+			</h:selectOneMenu>
+			<br/>
+			<h:panelGroup id="atividades">
+				<h:panelGroup rendered="#{inscricaoEventoBean.atividades ne null}">
+					<ui:repeat var="a" value="#{inscricaoEventoBean.atividades}">
+						<h:selectBooleanCheckbox>
+							<f:selectItem value="#{a.nome}"></f:selectItem>
+						</h:selectBooleanCheckbox>
+						<br/>
+					</ui:repeat>
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+	<ui:define name="footer">
+	</ui:define>
+</ui:composition>
+</html>
