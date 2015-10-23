@@ -6,9 +6,6 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -29,14 +26,16 @@ public class InscricaoEventoBean implements Serializable {
 	private EntityManager em;
 
 	public InscricaoEventoBean() {
+		evento = new Evento();
 	}	
 
 	public void carregarAtividades() {
-		System.out.println("OIIIIIIIIIIIIIIIIIIIII");
+		System.out.println("OIIIII id = " + evento.getId());
 		atividades = new ArrayList<>();
 		atividades = em.createQuery("SELECT a FROM Atividade a"
-				+ " WHERE a.evento_id = " + evento.getId()
+				+ " WHERE a.evento_id = :id"
 				+ " ORDER BY a.nome", Atividade.class)
+				.setParameter("id", evento.getId())
 				.getResultList();	
 	}
 

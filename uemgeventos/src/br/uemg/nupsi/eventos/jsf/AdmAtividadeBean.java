@@ -55,13 +55,13 @@ public class AdmAtividadeBean {
 			utx.begin();
 			idEvento = atividade.getEvento().getId();
 			
-			// atividade, aqui, é detached.
-			// entao, é preciso buscá-la novamente pra poder deletá-la.
+			// atividade, aqui, ï¿½ detached.
+			// entao, ï¿½ preciso buscï¿½-la novamente pra poder deletï¿½-la.
 			final Atividade a = em.find(Atividade.class, atividade.getId());
 			em.remove(a);
 			
 			utx.commit();
-			FacesUtil.addMessage("Atividade " + atividadeUtil.getId() + " excluída!");
+			FacesUtil.addMessage("Atividade " + atividadeUtil.getId() + " excluï¿½da!");
 		} catch (Exception e) {
 			FacesUtil.logException("Erro ao deletar atividade " + atividadeUtil.getId(), e);
 		}

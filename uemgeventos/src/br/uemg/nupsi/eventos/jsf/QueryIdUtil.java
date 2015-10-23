@@ -5,16 +5,15 @@ import javax.persistence.EntityManager;
 /**
  * Classe auxiliar que lida com um parametro de id
  * proveniente da query string.
- * Caso o id informado for inválido,
- * o objeto lança uma exceção que provavelmente
- * redirecionará à página de erro.
+ * Caso o id informado for invï¿½lido,
+ * o objeto lanï¿½a uma exceï¿½ï¿½o que provavelmente
+ * redirecionarï¿½ ï¿½ pï¿½gina de erro.
  * 
  * O id deve ser informado via viewParam
  * @author DB
  *
  */
 public class QueryIdUtil<T> {
-
 	private EntityManager em;
 	private Integer id;
 	private T entidade;
@@ -33,7 +32,7 @@ public class QueryIdUtil<T> {
 			entidade = em.find(clazz, id);
 			
 			if (entidade == null)
-				throw new IllegalArgumentException("O id "+id+" não foi encontrado.");
+				throw new IllegalArgumentException("O id "+id+" nï¿½o foi encontrado.");
 		}
 		return entidade;
 	}

@@ -14,20 +14,22 @@
 	<ui:define name="content">
 		<h:form>
 			<p>Escolha o evento:</p>
-			<h:selectOneMenu value="#{inscricaoEventoBean.evento}" >
+			<h:selectOneMenu value="#{inscricaoEventoBean.evento}">
 				<f:selectItem itemLabel=" - Selecione um evento"></f:selectItem>
 				<f:selectItems value="#{inscricaoEventoBean.eventos}" var="evento"
 					itemLabel="#{evento.nome}" itemValue="#{evento}"></f:selectItems>
 				<f:ajax event="change" render="atividades"></f:ajax>
 			</h:selectOneMenu>
-			<br/>
+			<br />
 			<h:panelGroup id="atividades">
-				<h:panelGroup rendered="#{inscricaoEventoBean.atividades ne null}">
+				<h:panelGroup>
 					<ui:repeat var="a" value="#{inscricaoEventoBean.atividades}">
-						<h:selectBooleanCheckbox>
-							<f:selectItem value="#{a.nome}"></f:selectItem>
-						</h:selectBooleanCheckbox>
-						<br/>
+
+						<h:outputText value="#{a.nome}"></h:outputText>
+						<!-- 						<h:selectBooleanCheckbox> -->
+						<!-- 							<f:selectItem value="#{a.nome}"></f:selectItem> -->
+						<!-- 						</h:selectBooleanCheckbox> -->
+						<!-- 						<br/> -->
 					</ui:repeat>
 				</h:panelGroup>
 			</h:panelGroup>
