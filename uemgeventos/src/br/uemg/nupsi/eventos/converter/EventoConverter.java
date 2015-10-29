@@ -19,10 +19,10 @@ public class EventoConverter implements Converter {
 	private Evento evento = new Evento();
 	private QueryIdUtil<Evento> eventoUtil;
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init(){
 		eventoUtil = new QueryIdUtil<>(em, Evento.class);
-	}
+	}*/
 	
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
@@ -31,6 +31,8 @@ public class EventoConverter implements Converter {
 		} else {
 			Integer id = Integer.parseInt(s);
 			System.out.println("id = " + id);
+			System.out.println("Valor de em: " + em);
+			eventoUtil = new QueryIdUtil<>(em, Evento.class);
 			eventoUtil.setId(id);
 			evento = eventoUtil.getEntidadeOrThrow();
 //			evento = em.createQuery("SELECT e FROM Evento e WHERE e.id = :id", Evento.class)

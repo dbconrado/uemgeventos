@@ -17,7 +17,7 @@ import br.uemg.nupsi.eventos.modelo.Evento;
 public class InscricaoEventoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Evento evento;
+	private Integer eventoId;
 	private Atividade atividade;
 	private List<Evento> eventos;
 	private List<Atividade> atividades;
@@ -25,30 +25,16 @@ public class InscricaoEventoBean implements Serializable {
 	@PersistenceContext
 	private EntityManager em;
 
-	public InscricaoEventoBean() {
-		evento = new Evento();
-	}	
-
 	public void carregarAtividades() {
-		System.out.println("OIIIII id = " + evento.getId());
+		System.out.println("OIIIII id = " + eventoId);
 		atividades = new ArrayList<>();
 		atividades = em.createQuery("SELECT a FROM Atividade a"
-				+ " WHERE a.evento_id = :id"
+				+ " WHERE a.evento.id = :id"
 				+ " ORDER BY a.nome", Atividade.class)
-				.setParameter("id", evento.getId())
+				.setParameter("id", eventoId)
 				.getResultList();	
 	}
 
-	public void setEvento(Evento evento) {
-		System.out.println("evento mudou: " + evento.getId());
-		this.evento = evento;
-		atividades = null;
-	}
-
-	public Evento getEvento() {
-		return evento;
-	}
-	
 	public Atividade getAtividade() {
 		return atividade;
 	}
@@ -73,6 +59,15 @@ public class InscricaoEventoBean implements Serializable {
 
 	public void setAtividades(List<Atividade> atividades) {
 		this.atividades = atividades;
+	}
+
+	public Integer getEventoId() {
+		return eventoId;
+	}
+
+	public void setEventoId(Integer eventoId) {
+		atividades = null;
+		this.eventoId = eventoId;
 	}
 	
 }
