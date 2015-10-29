@@ -1,5 +1,7 @@
 package br.uemg.nupsi.eventos.jsf;
 
+import java.util.Random;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -8,6 +10,7 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 /**
  * Copied from: http://www.javabeat.net/jsf-custom-error-pages/
+ * some additions have been made.
  * @author DB
  *
  */
@@ -70,6 +73,19 @@ public class ErrorHandler {
 
 		getRequestMap().get("javax.servlet.error.servlet_name");
 
+	}
+	
+	private String[] messages = new String[]{
+			"\"ai, desculpa!\", diz o servidor",
+			"Ops! Acho que o servidor tropeçou =/",
+			"Desculpe. Não é você, somos nós =(",
+			"Houston! Temos um problema! ¬¬'",
+			"Ouch!!... Essa doeu =[",
+			"Oh não! =((",
+			"Servidor! Que coisa feia! >("};
+	
+	public String getRandomMessage() {
+		return messages[new Random().nextInt(messages.length)];
 	}
 
 }
